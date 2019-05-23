@@ -414,7 +414,7 @@ export class HeaderComponent implements OnInit {
                 $('body').removeClass('modal-open');
                 $('.modal-backdrop').remove();
                 jQuery("#otpScreen").modal("show");
-                sessionStorage.setItem('mobile_number', (resp.json().phone_number));
+                sessionStorage.setItem('mobile_number', (resp.json().mobile_number));
 
             } else {
                 swal(resp.json().message, "", "error");

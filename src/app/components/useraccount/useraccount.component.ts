@@ -208,6 +208,7 @@ export class UseraccountComponent implements OnInit {
         this.editAccount = false;
         this.showAddProducts = false;
         this.showAddProducts5 = false;
+        this.showOfferZone = false;
         // this.getWish();
     }
 
