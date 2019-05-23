@@ -97,4 +97,7 @@ a {
     }
     @media screen and (max-width:520px) {
       .bottom-cont p {float: unset;text-align:center;}
+      .rounded {
+        display: none;
+      }
       }
