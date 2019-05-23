@@ -393,55 +393,57 @@
             <div>
                 <h3 class="profile-header">Wishlist</h3>
             </div>
-            <table class="table">
-                <thead>
-                    <tr class="table-headers wishlist-items">
-                        <th scope="col" width="40%">Item Name</th>
-                        <th scope="col" width="15%">Price</th>
-                        <th scope="col" width="20%">Stock Status</th>
-                        <th scope="col" width="25%">Add To Cart</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="wish-table"
-                        *ngFor="let wish of wishData | paginate: { itemsPerPage: 3, currentPage: p };">
-                        <td>
-                            <div class="row align-items-center">
-                                <div class="col-md-4">
-                                    <img [src]="wish.product_image" class="prod-images" alt="gdksha">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr class="table-headers wishlist-items">
+                            <th scope="col" width="40%">Item Name</th>
+                            <th scope="col" width="15%">Price</th>
+                            <th scope="col" width="20%">Stock Status</th>
+                            <th scope="col" width="25%">Add To Cart</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="wish-table"
+                            *ngFor="let wish of wishData | paginate: { itemsPerPage: 3, currentPage: p };">
+                            <td>
+                                <div class="row align-items-center">
+                                    <div class="col-md-4">
+                                        <img [src]="wish.product_image" class="prod-images" alt="gdksha">
+                                    </div>
+                                    <div class="col-md-8 prod-details">
+                                        <p class="mobile-manu">
+                                            <strong>{{wish.product_name}}</strong>
+                                        </p>
+                                        <p style="margin-top:-15px;"><strong>
+                                                Size:</strong>{{wish.size}} <br />
+                                            <strong>Color:</strong>BD {{wish.filter_color || "-"}}
+                                        </p>
+    
+                                    </div>
                                 </div>
-                                <div class="col-md-8 prod-details">
-                                    <p class="mobile-manu">
-                                        <strong>{{wish.product_name}}</strong>
-                                    </p>
-                                    <p style="margin-top:-15px;"><strong>
-                                            Size:</strong>{{wish.size}} <br />
-                                        <strong>Color:</strong>BD {{wish.filter_color || "-"}}
-                                    </p>
-
+                            </td>
+                            <td class="pt-5">
+                                <div class="prod-details">
+                                    <span>
+                                        <strong>BD {{wish.selling_price}}</strong>
+                                    </span>
                                 </div>
-                            </div>
-                        </td>
-                        <td class="pt-5">
-                            <div class="prod-details">
-                                <span>
-                                    <strong>BD {{wish.selling_price}}</strong>
-                                </span>
-                            </div>
-                        </td>
-                        <td class="pt-5">
-                            {{"-"}}
-                        </td>
-                        <td>
-                            <i class="fa fa-times-circle-o" aria-hidden="true" style="float:right"
-                                (click)="delWish(wish.wishlist_id)"></i>
-                            <button type="button" class="btn cart-btn"
-                                (click)="checkProdQuty(wish.product_id,wish.skid,wish.selling_price,wish.vendorid_as_owner,wish.vendor_product_id,wish.updated_discount)">Add
-                                To cart</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                            </td>
+                            <td class="pt-5">
+                                {{"-"}}
+                            </td>
+                            <td>
+                                <i class="fa fa-times-circle-o" aria-hidden="true" style="float:right"
+                                    (click)="delWish(wish.wishlist_id)"></i>
+                                <button type="button" class="btn cart-btn"
+                                    (click)="checkProdQuty(wish.product_id,wish.skid,wish.selling_price,wish.vendorid_as_owner,wish.vendor_product_id,wish.updated_discount)">Add
+                                    To cart</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <pagination-controls class=" my-pagination" (pageChange)="p = $event" style="float:right">
             </pagination-controls>
         </div>
@@ -959,7 +961,7 @@
                     </ul>
                 </div>
             </div>
-            <div>
+            <div class="no-prod">
                 No Products Found
             </div>
         </div>
@@ -1006,8 +1008,8 @@
                     </ul>
                 </div>
             </div>
-            <div>
-                &nbsp;&nbsp;&nbsp;No Products Found
+            <div class="no-prod">
+                No Products Found
             </div>
         </div>
 
@@ -1054,8 +1056,8 @@
                 </div>
 
             </div>
-            <div>
-                &nbsp;&nbsp;&nbsp;No Products Found
+            <div class="no-prod">
+                No Products Found
             </div>
 
         </div>

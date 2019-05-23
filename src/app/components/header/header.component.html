@@ -470,13 +470,13 @@
                                 <img class="cust-del img" src="assets/images/error.png" (click)="delCart(item.cart_id)">
                             </span>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 mw">
                             <div class="cust-img1">
                                 <img src="{{item.products.img}}" (click)="showProduxtDetails()" height="80px"
                                     width="80px">
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 product-cart">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 mw product-cart">
                             <p>{{item.prodName}}</p>
                             <!-- <select class="cust-slct" (change)="skuChange()">
                                 <option value="{{item.products.skid}}">{{item.products.skuValue}} - BD
@@ -486,7 +486,7 @@
                             <p class="cart-sku">{{item.products.skuValue}} {{item.products.size_measuring_unit}}
                             </p>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 text-right mt-3">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 mw text-right mt-3">
                             <div class="quantity">
                                 <button class="minus-btn" type="button" name="button"
                                     (click)="itemDecrease(item.cart_id)">
@@ -501,7 +501,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 mw">
                             <div class="cust-potatos">
                                 <h6>Price :
                                     <span style="color: #7eba00">BD
@@ -650,7 +650,7 @@
 <div class="modal fade" id="loginmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content cust-login2">
             <div class="modal-header cust-mdlhdr">
                 <h5 class="modal-title login-title text-center" id="exampleModalLabel">Login</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -761,7 +761,7 @@
 <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true" *ngIf="showRegistration">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content cust-login2">
             <div class="modal-header cust-mdlhdr">
                 <h5 class="modal-title login-title text-center" id="exampleModalLabel">Sign Up</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">

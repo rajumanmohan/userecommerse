@@ -16,6 +16,15 @@
 			</div>
 			<img id="myImg" src="{{product_image}}" [imageZoom]="zoomedImageSrc" alt="Snow"
 				(click)="showProduxtDetails(data.product_id)">
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="img">
+						<img *ngFor="let img of prodImages" [src]="img.sku_image" class="prod-images"
+							(click)="showBigImage(img.sku_image)">
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6 details">
 			<h4>{{prodName}}</h4>
@@ -72,14 +81,7 @@
 		</div>
 
 	</div>
-	<div class="row">
-		<div class="col-md-9">
-			<div class="img">
-				<img *ngFor="let img of prodImages" [src]="img.sku_image" class="prod-images"
-					(click)="showBigImage(img.sku_image)">
-			</div>
-		</div>
-	</div>
+	
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
 		<span class="close">&times;</span>
@@ -155,7 +157,7 @@
 					<span class="maroon">Verified Purchase</span>
 				</p>
 				<p>Slow internet Speed.. Hong Mobile... charging ok ok ... less than 10000</p> -->
-				<input type="text" placeholder="Write a comment..." [(ngModel)]="review">
+				<input type="text" class="cust-inp" placeholder="Write a comment..." [(ngModel)]="review">
 				<button class="btn btn-maroon" (click)="RateReview()">
 					Post
 				</button>

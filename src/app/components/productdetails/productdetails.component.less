@@ -218,7 +218,7 @@ body {
 .prod-images {
     height: 70px !important;
     width: 70px !important;
-    margin: 12px 32px;
+    margin: 15px 15px 15px 0;
     border: 1px solid gray;
     cursor: pointer;
 }
@@ -355,10 +355,17 @@ body {
     }
     }
     
-    @media only screen and (max-width:767px){
-    .rating {
-    width: 77%;
-    } 
+    @media only screen and (max-width:767.98px){
+        .rating {
+            width: 77%;
+        }
+        .discount-per {
+            margin-left: 4px !important;
+            transform: rotate(13deg) !important;
+        }
+        .desription input {
+            width: 57%;
+        }
     }
     
     
@@ -379,7 +386,7 @@ body {
         transform: rotate;
         -ms-transform: skewX(20deg);
         -webkit-transform: skewX(20deg);
-        transform: rotate(7deg) !important;
+        transform: rotate(7deg);
         font-size: 13px;
     }
       /*Ulka CSs*/
@@ -445,5 +452,12 @@ ngb-rating.d-inline-flex {
     font-size: 30px;
 }
 i.fas.fa-heart {
-    margin-top: -75px;
+    margin-top: -50px;
+}
+.desription {
+    margin-left: 15px;
+}
+.cust-inp {
+    margin-left: -15px;
+    padding-left: 15px;
 }

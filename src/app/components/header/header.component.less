@@ -275,8 +275,12 @@ width: 140px;
     top: 1px;
     height: 100% !important;
 }
-@media screen and (max-width: 767px) {  /** some styles changed **/
+
+@media screen and (max-width: 767.78px) {  /** some styles changed **/
    
+    .cart-logo {
+        width: auto !important;
+    }
     .cust-potatos {
         h6 {
             text-align: center !important;
@@ -353,6 +357,9 @@ width: 140px;
     .category-popup{
         width: 270px !important;
         right: 15%;
+    }
+    .cust-cost {
+        margin-left: 30px;
     }
  }
 
@@ -892,11 +899,25 @@ div#accordion a {
     }
 }
 
+@media (min-width: 360px) and (max-width: 568px) { 
+    .cust-login2 {
+        height: 300px;
+        overflow: scroll;
+    }
+ }
+
+@media (min-width: 768px) and (max-width: 991.98px) { 
+    .cust-login2 {
+        height: 300px;
+        overflow: scroll;
+    }
+ }
 
 @media (min-width: 768px) and (max-width: 1199.98px) { 
     .cust-subcarcont{
         left: 0 !important;
     }
+    
  }
 
 @media only screen and (max-width:710px) {
@@ -972,7 +993,22 @@ div#accordion a {
     .cust-botton {
         margin-top: -50px;
     }
+    .navbar-brand {
+        width: 35%;
+    }
+    
 }
+
+@media (min-width: 576px) and (max-width: 767.98px) { 
+    .cust-login2 {
+        height: 300px;
+        overflow: scroll;
+    }
+    .acount-details {
+        margin-right: 5px;
+    }
+ }
+
 
 nav.navbar.cust-navbar.navbar-expand-md.sticky-top.navbar-dark {
     padding-right: 0px !important;
@@ -1173,7 +1209,7 @@ background-color: rgba(0, 0, 0, 0.77);
     #menuicon2{display:block;}
     #collapseExample .card.card-body.card-accordion {width:100%;padding:0;height: 400px;overflow-y: auto;}
     #collapseExample ul {list-style-type: none;padding: 0;}
-    #navbar-mobile a.navbar-brand {width: 50%;margin: 0;float:left;}
+    #navbar-mobile a.navbar-brand {width: 35%;margin: 0;float:left;}
     #navbar-mobile ul.navbar-nav.cust-navbarnav {width: 31%;float: right;    margin: 15px 0 !important;}
     #navbar-mobile ul.navbar-nav.cust-navbarnav .cust-cost{margin: 5px 15px;}
     #navbar-mobile #searchbox .input-group{width:80%;margin:0 auto;}
@@ -1182,6 +1218,13 @@ background-color: rgba(0, 0, 0, 0.77);
 }
 @media only screen and (max-width:520px) {
     #navbar-mobile ul.navbar-nav.cust-navbarnav {width: 33%;float: right;    margin: 15px 0 !important;}
+    .mw {
+        width: 45%;
+    }
+    .cust-login2 {
+        height: 400px;
+        overflow: scroll;
+    }
 }
 
 @media screen and (min-width: 521px) and (max-width:767px){
@@ -1190,13 +1233,17 @@ background-color: rgba(0, 0, 0, 0.77);
 }
 @media (min-width: 600px) and (max-width: 768px){
     #navbar-mobile ul.navbar-nav.cust-navbarnav {width: 36%;float: right;    margin: 15px 0 !important;}
+
 } 
 @media (min-width: 475px) and (max-width: 600px){
     #navbar-mobile ul.navbar-nav.cust-navbarnav {width: 46%;float: right;    margin: 15px 0 !important;}
+    .mw {
+        width: 45%;
+    }
 } 
 
 @media (min-width: 320px) and (max-width: 475px){
-    #navbar-mobile ul.navbar-nav.cust-navbarnav {width: 50%;float: right;    margin: 15px 0 !important;}
+    #navbar-mobile ul.navbar-nav.cust-navbarnav {width: 65%;float: right;    margin: 15px 0 !important;}
 } 
 @media screen and (min-width: 767px) and (max-width:991px){
     #navbar-mobile ul.navbar-nav.cust-navbarnav { /*margin-right: -23% !important;*/}
