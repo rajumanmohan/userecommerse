@@ -901,15 +901,15 @@ div#accordion a {
 
 @media (min-width: 360px) and (max-width: 568px) { 
     .cust-login2 {
-        height: 300px;
-        overflow: scroll;
+        height: 100%;
+        overflow-x: scroll;
     }
  }
 
 @media (min-width: 768px) and (max-width: 991.98px) { 
     .cust-login2 {
-        height: 300px;
-        overflow: scroll;
+        height: 100%;
+        overflow-x: scroll;
     }
  }
 
@@ -943,7 +943,7 @@ div#accordion a {
         width: 50%;
     }
     .cust-logo {
-        width: 70%;
+        width: 100%;
         margin-top: 15px;
     }
     .cart {
@@ -1000,10 +1000,7 @@ div#accordion a {
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) { 
-    .cust-login2 {
-        height: 300px;
-        overflow: scroll;
-    }
+  
     .acount-details {
         margin-right: 5px;
     }
@@ -1221,10 +1218,7 @@ background-color: rgba(0, 0, 0, 0.77);
     .mw {
         width: 45%;
     }
-    .cust-login2 {
-        height: 400px;
-        overflow: scroll;
-    }
+   
 }
 
 @media screen and (min-width: 521px) and (max-width:767px){
@@ -1236,14 +1230,21 @@ background-color: rgba(0, 0, 0, 0.77);
 
 } 
 @media (min-width: 475px) and (max-width: 600px){
-    #navbar-mobile ul.navbar-nav.cust-navbarnav {width: 46%;float: right;    margin: 15px 0 !important;}
+    #navbar-mobile ul.navbar-nav.cust-navbarnav {width: 38%;float: right;    margin: 15px 0 !important;}
     .mw {
         width: 45%;
     }
 } 
 
 @media (min-width: 320px) and (max-width: 475px){
-    #navbar-mobile ul.navbar-nav.cust-navbarnav {width: 65%;float: right;    margin: 15px 0 !important;}
+    #navbar-mobile ul.navbar-nav.cust-navbarnav {width: 46%;float: right;    margin: 15px 0 !important;}
+} 
+
+@media (min-width: 320px) and (max-width: 375px){
+    #navbar-mobile ul.navbar-nav.cust-navbarnav {width: 46%;float: right;    margin: 15px 0 !important;}
+    .cust-cartitem {
+        margin-left: 9px;
+    }
 } 
 @media screen and (min-width: 767px) and (max-width:991px){
     #navbar-mobile ul.navbar-nav.cust-navbarnav { /*margin-right: -23% !important;*/}
@@ -1300,7 +1301,7 @@ i.fa.fa-google-plus-official {
     margin-left: 24px;
 }
 .mobile-number{
-    width: 39% !important;
+    width: 39% ;
     display: block;
     // width: 100%;
     padding: .375rem .75rem;
