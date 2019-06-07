@@ -99,9 +99,9 @@
 					</ul>
 				</div>
 			</div>
-			<div *ngIf="noData">
-				<h4>No Products Found</h4>
-			</div>
+		</div>
+		<div *ngIf="noData">
+			<h4>No Products Found</h4>
 		</div>
 	</div>
 	<!--/.Slides-->
@@ -516,7 +516,7 @@
 <br />
 
 <!-- recently viewed -->
-<div class="container-fluid deals-header">
+<div class="container-fluid deals-header" hidden>
 	<div class="row justify-content-center">
 		<div class="col-lg-4">
 			<h4 class="text-center">Recently Viewed
@@ -534,7 +534,7 @@
 
 	<br />
 
-	<div class="carousel-inner deals" role="listbox">
+	<div class="carousel-inner deals" role="listbox" hidden>
 
 		<div class="carousel-item active dealsAct">
 			<div class="col-md-3 col-sm-6 recProds" *ngFor="let data of recViewData">

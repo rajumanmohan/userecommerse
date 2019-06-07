@@ -425,8 +425,10 @@ export class ProductsComponent implements OnInit {
         }
         this.appService.productBySubCatId(this.subId, params).subscribe(res => {
             this.prodData = res.json().vendor_products;
-            this.catId1 = this.catId === undefined ? this.prodData[0].category_id != undefined ? this.prodData[0].category_id : "" : this.catId;
+            // this.catId1 = this.catId === undefined ? this.prodData[0].category_id != undefined ? this.prodData[0].category_id : "" : this.catId;
             if (this.prodData != undefined) {
+            this.catId1 = this.catId === undefined ? this.prodData[0].category_id != undefined ? this.prodData[0].category_id : "" : this.catId;
+
                 for (var i = 0; i < this.prodData.length; i++) {
                     for (var j = 0; j < this.prodData[i].sku_row.length; j++) {
                         this.prodData[i].selling_price = this.prodData[i].updated_price - this.prodData[i].updated_discount;
@@ -439,10 +441,12 @@ export class ProductsComponent implements OnInit {
                 }
                 this.noData = false;
                 this.noData1 = false;
-            }
-            if (res.json().message === "No records Found") {
+            } else {
                 this.noData = true;
             }
+            // if (res.json().message === "No records Found") {
+
+            // }
         }, err => {
             // this.subCatName1 = '';
         })

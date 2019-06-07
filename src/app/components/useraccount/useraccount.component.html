@@ -794,9 +794,9 @@
                     </tr>
                 </tbody>
             </table>
-            <div style="float:right;">
+            <!-- <div style="float:right;">
                 <button type="button" class="btn invoice-btn">Email Invoice</button>
-            </div>
+            </div> -->
         </div>
 
 
@@ -903,11 +903,11 @@
                 <div class="col-lg-6">
                     <h3 class="profile-header">Notifications</h3>
                 </div>
-                <div class="col-lg-6 clear-option" *ngIf="!noData1">
+                <!-- <div class="col-lg-6 clear-option" *ngIf="!noData1">
                     <p (click)="clearAll()" class="clear">
                         <strong>Clear All</strong>
                     </p>
-                </div>
+                </div> -->
             </div>
             <div class="notification-bar1"
                 *ngFor="let data of noticationData|paginate: { itemsPerPage: 10, currentPage: p };">
