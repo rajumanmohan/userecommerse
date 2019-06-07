@@ -390,7 +390,10 @@ export class appService {
     constructor(private http: Http) { }
 
     registration(params) {
-        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        const headers = new Headers({
+            'Content-Type': "application/JSON",
+            'session_id': (sessionStorage.session),
+        });
         return this.http.post(AppSettings.registrationUrl, params, { headers: headers });
     }
     login(params) {
@@ -760,8 +763,10 @@ export class appService {
         return this.http.get(AppSettings.getDetailsById + "/" + this.user_id, { headers: headers });
     }
     socialLogin(params) {
-        const headers = new Headers({ 'Content-Type': "application/JSON" });
-        // this.user_id = sessionStorage.userId;
+        const headers = new Headers({
+            'Content-Type': "application/JSON",
+            'session_id': (sessionStorage.session),
+        });
         return this.http.post(AppSettings.socialLogin, params, { headers: headers });
     }
     getNotifications1() {
@@ -773,6 +778,11 @@ export class appService {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
         // this.user_id = sessionStorage.userId;
         return this.http.post(AppSettings.forgotwithEmail, params, { headers: headers });
+    }
+    recentlyViwed() {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        this.user_id = sessionStorage.userId;
+        return this.http.get(AppSettings.recentlyViwed + "/" + this.user_id + "/" + "ecommerce", { headers: headers });
     }
 }
 

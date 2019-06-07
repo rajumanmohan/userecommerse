@@ -735,7 +735,7 @@ export class UseraccountComponent implements OnInit {
     toDt;
     type;
     Type(value) {
-        this.type = value;
+        this.type = value || 'Home';
     }
     filterVendor() {
         var inData = {

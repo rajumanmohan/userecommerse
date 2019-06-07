@@ -117,7 +117,7 @@ export class MycartComponent implements OnInit {
     }
     type;
     Type(value) {
-        this.type = value;
+        this.type = value || 'Home';
     }
     //save address
 

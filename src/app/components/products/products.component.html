@@ -1,26 +1,26 @@
 <app-header [cartCount]="cartCount" [billing]="billing"></app-header>
 <div class="container products">
     <div class="row m-view">
-            <div class="col-md-9 items">
-                    <p>
-                        <a routerLink="/">Home</a>&nbsp;&nbsp;>&nbsp;
-                        <a *ngIf="catName1"><a>{{catName1}}</a>&nbsp;&nbsp;>&nbsp;</a>
-                        <a *ngIf="subCatName1"><a>{{subCatName1}}</a></a>
-                    </p>
-                    <div class="row" *ngIf="searchProd">
-                        <div class="col-md-3 item" *ngFor="let data of prodData">
-                            <div class="wrapper">
-                                <div class="card">
-                                    <img src="assets/images/background-img.png" class="bg-layer">
-                                    <img class="img-fluid product-image" [src]="data.image" alt="Card image cap"
-                                        (click)="showProduxtDetails(data.vendor_product_id,data.vendorid_as_owner)">
-                                    <div class="card-block">
-                                        <h5 class="text-center">{{data.product_name}} </h5>
-                                        <p class="text-center">
-                                            BD {{data.selling_price}}
-                                            <strike>BD {{data.actual_price}}</strike>
-                                        </p>
-                                        <!-- <div class="quantity-price text-center">
+        <div class="col-md-9 items">
+            <p>
+                <a routerLink="/">Home</a>&nbsp;&nbsp;>&nbsp;
+                <a *ngIf="catName1"><a>{{catName1}}</a>&nbsp;&nbsp;>&nbsp;</a>
+                <a *ngIf="subCatName1"><a>{{subCatName1}}</a></a>
+            </p>
+            <div class="row" *ngIf="searchProd">
+                <div class="col-md-3 item" *ngFor="let data of prodData">
+                    <div class="wrapper">
+                        <div class="card">
+                            <img src="assets/images/background-img.png" class="bg-layer">
+                            <img class="img-fluid product-image" [src]="data.image" alt="Card image cap"
+                                (click)="showProduxtDetails(data.vendor_product_id,data.vendorid_as_owner)">
+                            <div class="card-block">
+                                <h5 class="text-center">{{data.product_name}} </h5>
+                                <p class="text-center">
+                                    BD {{data.selling_price}}
+                                    <strike>BD {{data.actual_price}}</strike>
+                                </p>
+                                <!-- <div class="quantity-price text-center">
                                             <select (change)="changeSize($event.target.value)">
                                                 <option *ngFor="let sku of data.sku_row" [value]="sku.skid">{{sku.size}}-BD
                                                     {{data?.selling_price}}
@@ -30,110 +30,110 @@
                                         <button type="text" class="btn waves-effect waves-light"
                                             (click)="checkProdQuty(data.product_id,data.skid,data.selling_price,data.vendorid_as_owner,data.vendor_product_id,data.updated_discount)">Add
                                             To Cart</button> -->
-                                    </div>
-                                </div>
-                                <ul class="expand-button">
-                                    <li><a
-                                            (click)="checkProdQuty(data.product_id,data.skid,data.selling_price,data.vendorid_as_owner,data.vendor_product_id,data.updated_discount)"><i
-                                                class="fas fa-shopping-basket"></i></a></li>
-                                    <li><a (click)="openNew(data.skid)"><img src="assets/images/maximize.png"></a></li>
-                                </ul>
-                                <ul class="expand-button2 expand-button-2">
-                                    <li><a (click)="addtoWish(data.product_id,data.skid)"><i class="fas fa-heart"
-                                                [ngStyle]="{'color':data.wish_list == 'true' ? '#801223'  :  '#dfdfdf'}"></i></a>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
-                        <div *ngIf="noData1">
-                            No data
-                        </div>
-                        <!-- <div class="quantity-price text-center">
+                        <ul class="expand-button">
+                            <li><a
+                                    (click)="checkProdQuty(data.product_id,data.skid,data.selling_price,data.vendorid_as_owner,data.vendor_product_id,data.updated_discount)"><i
+                                        class="fas fa-shopping-basket"></i></a></li>
+                            <!-- <li><a (click)="openNew(data.skid)"><img src="assets/images/maximize.png"></a></li> -->
+                        </ul>
+                        <ul class="expand-button2 expand-button-2">
+                            <li><a (click)="addtoWish(data.product_id,data.skid)"><i class="fas fa-heart"
+                                        [ngStyle]="{'color':data.wish_list == 'true' ? '#801223'  :  '#dfdfdf'}"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div *ngIf="noData1">
+                    <h4 class="text-center">No Products Found</h4>
+                </div>
+                <!-- <div class="quantity-price text-center">
                             <select (change)="changeSize($event.target.value)">
                                 <option  [value]="sku.skid">{{sku.size}}</option>
                             </select>
                         </div>
                         <button type="text" class="btn waves-effect waves-light" (click)="checkProdQuty(item.product_id)">Add To Cart</button> -->
-                    </div>
-                    <!-- <div *ngIf="noRecords">
+            </div>
+            <!-- <div *ngIf="noRecords">
                         No records Found
                     </div> -->
-                    <div class="row" *ngIf="seeAll">
-                        <div class="col-lg-3 col-md-6 col-sm-6 item" *ngFor="let data of prodData;let i=index">
-                            <div class="wrapper">
-                                <div class="card">
-                                    <img src="assets/images/background-img.png" class="bg-layer">
-                                    <img class="img-fluid product-image" [src]="data.image" alt="Card image cap"
-                                        (click)="showProduxtDetails(data.vendor_product_id,data.vendorid_as_owner)">
-                                    <div class="card-block">
-                                        <h5 class="text-center">{{data.product_name}} </h5>
-                                        <p class="text-center">
-                                            BD {{data.selling_price}}
-                                            <strike>BD {{data.actual_price}}</strike>
-                                        </p>
-                                        <!-- <div class="quantity-price text-center">
+            <div class="row" *ngIf="seeAll">
+                <div class="col-lg-3 col-md-6 col-sm-6 item" *ngFor="let data of prodData;let i=index">
+                    <div class="wrapper">
+                        <div class="card">
+                            <img src="assets/images/background-img.png" class="bg-layer">
+                            <img class="img-fluid product-image" [src]="data.image" alt="Card image cap"
+                                (click)="showProduxtDetails(data.vendor_product_id,data.vendorid_as_owner)">
+                            <div class="card-block">
+                                <h5 class="text-center">{{data.product_name}} </h5>
+                                <p class="text-center">
+                                    BD {{data.selling_price}}
+                                    <strike>BD {{data.actual_price}}</strike>
+                                </p>
+                                <!-- <div class="quantity-price text-center">
                                             <select (change)="changeSize($event.target.value)">
                                                 <option *ngFor="let sku of data.sku_row" [value]="sku.skid">{{sku.size}}-BD
                                                     {{data?.selling_price}}
                                                 </option>
                                             </select>
                                         </div> -->
-                                        <!-- <button type="text" class="btn waves-effect waves-light"
+                                <!-- <button type="text" class="btn waves-effect waves-light"
                                             (click)="checkProdQuty(data.product_id,data.skid,data.selling_price,data.vendorid_as_owner,data.vendor_product_id,data.updated_discount)">Add
                                             To Cart</button> -->
-                                    </div>
-                                </div>
-                                <ul class="expand-button">
-                                    <li><a
-                                            (click)="checkProdQuty(data.product_id,data.skid,data.selling_price,data.vendorid_as_owner,data.vendor_product_id,data.updated_discount)"><i
-                                                class="fas fa-shopping-basket"></i></a>
-                                    </li>
-                                    <li><a (click)="openNew(data.skid)"><img src="assets/images/maximize.png"></a></li>
-                                </ul>
-                                <ul class="expand-button2 expand-button-2">
-                                    <li><a (click)="addtoWish(data.product_id,data.skid)"><i class="fas fa-heart"
-                                                [ngStyle]="{'color':data.wish_list == 'true' ? '#801223'  :  '#dfdfdf'}"></i></a>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
+                        <ul class="expand-button">
+                            <li><a
+                                    (click)="checkProdQuty(data.product_id,data.skid,data.selling_price,data.vendorid_as_owner,data.vendor_product_id,data.updated_discount)"><i
+                                        class="fas fa-shopping-basket"></i></a>
+                            </li>
+                            <!-- <li><a (click)="openNew(data.skid)"><img src="assets/images/maximize.png"></a></li> -->
+                        </ul>
+                        <ul class="expand-button2 expand-button-2">
+                            <li><a (click)="addtoWish(data.product_id,data.skid)"><i class="fas fa-heart"
+                                        [ngStyle]="{'color':data.wish_list == 'true' ? '#801223'  :  '#dfdfdf'}"></i></a>
+                            </li>
+                        </ul>
                     </div>
-                    <div *ngIf="noData">
-                        <h4 class="text-center">No Products Found</h4>
+                </div>
+            </div>
+            <div *ngIf="noData">
+                <h4 class="text-center">No Products Found</h4>
+            </div>
+            <!-- zoom model -->
+            <div class="modal fade" id="enlargeImg" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                        </div>
                     </div>
-                    <!-- zoom model -->
-                    <div class="modal fade" id="enlargeImg" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-lg-12">
-        
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="modal-dialog modal-dialog-centered modal-popup-fullimage" role="document">
-                                        <div class="modal-content enlargeImg">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body large-body">
-                                                <div class="">
-                                                    <img class="img-fluid" [src]="enlargeImg" alt="Card image cap"
-                                                        (click)="showProduxtDetails(data.vendor_product_id,data.vendorid_as_owner)">
-                                                </div>
-                                            </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="modal-dialog modal-dialog-centered modal-popup-fullimage" role="document">
+                                <div class="modal-content enlargeImg">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body large-body">
+                                        <div class="">
+                                            <img class="img-fluid" [src]="enlargeImg" alt="Card image cap"
+                                                (click)="showProduxtDetails(data.vendor_product_id,data.vendorid_as_owner)">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-        
                     </div>
-                    <!-- zoom model -->
                 </div>
+
+            </div>
+            <!-- zoom model -->
+        </div>
         <div class="col-md-3">
             <h5>Category</h5>
             <br />
@@ -364,7 +364,7 @@
                             <li><a
                                     (click)="checkProdQuty(data.product_id,data.skid,data.selling_price,data.vendorid_as_owner,data.vendor_product_id,data.updated_discount)"><i
                                         class="fas fa-shopping-basket"></i></a></li>
-                            <li><a (click)="openNew(data.skid)"><img src="assets/images/maximize.png"></a></li>
+                            <!-- <li><a (click)="openNew(data.skid)"><img src="assets/images/maximize.png"></a></li> -->
                         </ul>
                         <ul class="expand-button2 expand-button-2">
                             <li><a (click)="addtoWish(data.product_id,data.skid)"><i class="fas fa-heart"
@@ -374,7 +374,7 @@
                     </div>
                 </div>
                 <div *ngIf="noData1">
-                    No data
+                    <h4 class="text-center">No Products Found</h4>
                 </div>
                 <!-- <div class="quantity-price text-center">
 					<select (change)="changeSize($event.target.value)">
@@ -416,7 +416,7 @@
                                     (click)="checkProdQuty(data.product_id,data.skid,data.selling_price,data.vendorid_as_owner,data.vendor_product_id,data.updated_discount)"><i
                                         class="fas fa-shopping-basket"></i></a>
                             </li>
-                            <li><a (click)="openNew(data.skid)"><img src="assets/images/maximize.png"></a></li>
+                            <!-- <li><a (click)="openNew(data.skid)"><img src="assets/images/maximize.png"></a></li> -->
                         </ul>
                         <ul class="expand-button2 expand-button-2">
                             <li><a (click)="addtoWish(data.product_id,data.skid)"><i class="fas fa-heart"

@@ -69,7 +69,7 @@ export class HeaderComponent implements OnInit {
     user: SocialUser;
     public authorized: boolean = false;
     constructor(public dialog: MatDialog, private router: Router, public appService: appService, private formBuilder: FormBuilder, private zone: NgZone, private socialAuthService: AuthService) {
-        if (sessionStorage.token === undefined) {
+        if (sessionStorage.userId === undefined) {
             this.showRegistration = true;
             this.showLoginScreen = true;
             this.myAccount = false;
@@ -86,6 +86,62 @@ export class HeaderComponent implements OnInit {
         //     this.showLocation = true;
         // }
     }
+    //ecom
+    // public socialSignIn(socialPlatform: string) {
+
+    //     let socialPlatformProvider;
+    //     if (socialPlatform == "facebook") {
+    //         socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+    //     } else if (socialPlatform == "google") {
+    //         socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    //     }
+
+    //     this.socialAuthService.signIn(socialPlatformProvider).then(
+    //         (userData) => {
+    //             console.log(socialPlatform + " sign in data : ", userData);
+    //             this.user = userData;
+    //             // Now sign-in with userData        
+    //             if (userData != null) {
+    //                 this.authorized = true;
+    //                 this.user = userData;
+    //                 var inData = {
+    //                     email: this.user.email,
+    //                     id: this.user.id,
+    //                     idToken: this.user.idToken,
+    //                     image: this.user.image,
+    //                     name: this.user.name,
+    //                     provider: this.user.provider,
+    //                     token: this.user.token
+    //                 }
+    //                 this.appService.socialLogin(inData).subscribe(res => {
+    //                     res.json().id ? sessionStorage.setItem('userId', (res.json().id)) : ''
+    //                     swal(res.json().message, "", "success");
+    //                     if (res.json().id != '' || undefined) {
+    //                         this.appService.getDetailsById().subscribe(response => {
+    //                             console.log(response.json());
+    //                             sessionStorage.setItem('phone', (response.json().data[0].mobile_number));
+    //                             sessionStorage.setItem('email', (response.json().data[0].email));
+    //                             sessionStorage.setItem('userId', (response.json().data[0].reg_id));
+    //                             sessionStorage.setItem('userName', (response.json().data[0].first_name) + " " + (response.json().data[0].last_name));
+    //                             this.loginDetails = response.json().data[0];
+    //                             this.showRegistration = false;
+    //                             this.showLoginScreen = false;
+    //                             this.myAccount = true;
+    //                             jQuery("#loginmodal").modal("hide");
+    //                             $('body').removeClass('modal-open');
+    //                             $('.modal-backdrop').remove();
+    //                             this.ngOnInit()
+    //                         })
+    //                     }
+    //                     if (res.json().status == 400) {
+    //                         swal(res.json().message, "", "error");
+    //                     }
+    //                 })
+    //             }
+    //         }
+    //     );
+    // }
+    //gro
     public socialSignIn(socialPlatform: string) {
 
         let socialPlatformProvider;
@@ -109,31 +165,38 @@ export class HeaderComponent implements OnInit {
                         idToken: this.user.idToken,
                         image: this.user.image,
                         name: this.user.name,
+                        first_name: this.user.name,
                         provider: this.user.provider,
                         token: this.user.token
                     }
                     this.appService.socialLogin(inData).subscribe(res => {
-                        sessionStorage.setItem('userId', (res.json().id));
-                        swal(res.json().message, "", "message");
-                        this.appService.getDetailsById().subscribe(response => {
-                            console.log(response.json());
-                            sessionStorage.setItem('phone', (response.json().data[0].mobile_number));
-                            sessionStorage.setItem('email', (response.json().data[0].email));
-                            sessionStorage.setItem('userId', (response.json().data[0].reg_id));
-                            sessionStorage.setItem('userName', (response.json().data[0].first_name) + " " + (response.json().data[0].last_name));
-                            this.loginDetails = response.json().data[0];
-                            this.showRegistration = false;
-                            this.showLoginScreen = false;
-                            this.myAccount = true;
-                            jQuery("#loginmodal").modal("hide");
-                            $('body').removeClass('modal-open');
-                            $('.modal-backdrop').remove();
+                        res.json().id ? sessionStorage.setItem('userId', (res.json().id)) : ''
+                        swal(res.json().message, "", "success");
+                        if (res.json().id != '' || undefined) {
+                            this.appService.getDetailsById().subscribe(response => {
+                                this.showRegistration = false;
+                                this.showLoginScreen = false;
+                                this.myAccount = true;
+                                response.json().data[0].mobile_number ? sessionStorage.setItem('phone', (response.json().data[0].mobile_number)) : ''
+                                response.json().data[0].email ? sessionStorage.setItem('email', (response.json().data[0].email)) : ''
+                                response.json().data[0].reg_id ? sessionStorage.setItem('userId', (response.json().data[0].reg_id)) : ''
+                                // sessionStorage.setItem('userName', (response.json().data[0].first_name) + " " + (response.json().data[0].last_name));
+                                // this.loginDetails = response.json().data[0];
+                                jQuery("#loginmodal").modal("hide");
+                                $('body').removeClass('modal-open');
+                                $('.modal-backdrop').remove();
+                                this.ngOnInit();
+                            })
+                        }
+                        if (res.json().status == 400) {
+                            swal(res.json().message, "", "error");
+                        }
 
-                        })
                     })
                 }
             }
         );
+
     }
 
     public signOut1() {
@@ -178,7 +241,7 @@ export class HeaderComponent implements OnInit {
         location.reload();
     }
     ngOnInit() {
-        if (sessionStorage.token === undefined) {
+        if (sessionStorage.userId === undefined) {
             this.showRegistration = true;
             this.showLoginScreen = true;
             this.myAccount = false;
@@ -199,7 +262,7 @@ export class HeaderComponent implements OnInit {
             first_name: ['', Validators.required],
             last_name: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
-            mobile_number: ['', [Validators.required, Validators.minLength(10)]],
+            mobile_number: [''],
             password: ['', [Validators.required, Validators.minLength(6)]],
             retype_password: ['', [Validators.required, Validators.minLength(6)]]
         });
@@ -272,6 +335,9 @@ export class HeaderComponent implements OnInit {
         this.phone = false;
         this.getCart();
         this.router.navigate(['/']);
+        if (this.router.navigate(['/'])) {
+            location.reload();
+        }
         // location.reload();
     }
     // BAYATA VALLU UNTEY
@@ -292,13 +358,23 @@ export class HeaderComponent implements OnInit {
                     $('body').removeClass('modal-open');
                     $('.modal-backdrop').remove();
                     // this.showRegistration = false;
-                    sessionStorage.setItem('userId', (resp.json().id));
-                    // this.myAccount = true
-                    // this.showOpacity = false;
-                    // this.onCloseCancel();
-                    this.router.navigate(['/address']);
+                    resp.json().data[0].reg_id ? sessionStorage.setItem('userId', (resp.json().data[0].reg_id)) : '';
+                    if (resp.json().data[0].reg_id != '' || undefined) {
+                        this.appService.getDetailsById().subscribe(response => {
+                            this.showRegistration = false;
+                            this.showLoginScreen = false;
+                            this.myAccount = true;
+                            sessionStorage.setItem('phone', (response.json().data[0].mobile_number));
+                            sessionStorage.setItem('email', (response.json().data[0].email));
+                            sessionStorage.setItem('userId', (response.json().data[0].reg_id));
+                            sessionStorage.setItem('userName', (response.json().data[0].first_name) + " " + (response.json().data[0].last_name));
+                            this.loginDetails = response.json().data[0];
+                            this.phone = true;
+                            this.ngOnInit()
+                        })
+                    }
                 }
-                else if (resp.json().status === 400) {
+                else if (resp.json().status == 400) {
                     swal(resp.json().message, "", "error");
                     // jQuery("#signupmodal").modal("hide");
                 }

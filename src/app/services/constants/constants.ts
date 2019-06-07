@@ -86,6 +86,6 @@ export const AppSettings = {
     socialLogin: baseUrl + "users/sociallogin",
     getNotifications: baseUrl + "vendor/cart_details/usernotifications",
     forgotwithEmail: baseUrl + "users/forgot_passwordbyemail",
-    recentlyVived:baseUrl+'vendor_products/recentlyviewed/grocery'
+    recentlyViwed: baseUrl + 'vendor_products/recentlyviewed/grocery'
 }
 

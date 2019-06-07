@@ -2,14 +2,14 @@
 <div class="container productDetails">
 	<p>
 		<a routerLink="/">Home</a>&nbsp;&nbsp;>&nbsp;
-		<a>{{category_name}} </a>&nbsp;&nbsp;>&nbsp;<a *ngIf="sub_name">{{sub_name}}</a>{{prodName}}
+		<a>{{category_name}} </a>&nbsp;&nbsp;>&nbsp;<a *ngIf="sub_name">{{sub_name}}</a>>&nbsp;{{prodName}}
 	</p>
 	<div class="row">
 
 		<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6">
 			<div class="offer-label">
-				<img src="assets/images/percentage.png">
-				<p class="discount-per">{{discountPer}}%</p>
+				<!-- <img src="assets/images/percentage.png">
+				<p class="discount-per">{{discountPer}}%</p> -->
 			</div>
 			<div class="wish-list" (click)="addtoWish()">
 				<a><i class="fas fa-heart" [ngStyle]="{'color':wish_list=='true'?'#801424':'gray'}"></i></a>
@@ -46,7 +46,7 @@
 				</fieldset>
 			</div> -->
 			<!-- <span class="rate">Rating : 5</span> -->
-			<ngb-rating [(rate)]="rate"></ngb-rating>
+			<!-- <ngb-rating [(rate)]="rate"></ngb-rating> -->
 			<div class="row">
 				<div class="col-md-3">
 					<p class="size">Size
@@ -56,8 +56,8 @@
 					</p>
 				</div>
 				<div class="col-md-9">
-					<p>color</p>
-					{{filter_color || '-'}}
+					<!-- <p>color</p>
+					{{filter_color || '-'}} -->
 					<!-- <a class="black"></a>
 					<a class="cream"></a> -->
 
@@ -81,7 +81,7 @@
 		</div>
 
 	</div>
-	
+
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
 		<span class="close">&times;</span>
@@ -141,7 +141,7 @@
 		</div>
 	</div>
 
-	<div class="row desription">
+	<div class="row desription" hidden>
 		<h5>Reviews</h5>
 		<br />
 
@@ -162,8 +162,8 @@
 					Post
 				</button>
 			</div>
-			<div *ngFor="let item of rateData">
-				<ngb-rating [(rate)]="item.rating" readonly></ngb-rating>
+			<div *ngFor="let item of rateData;let i=index;">
+				<ngb-rating [(rate)]="item.rating" readonly="true"></ngb-rating>
 				<p>By
 					<spn class="name">{{item.first_name + item.last_name}}</spn>&nbsp;&nbsp;&nbsp; on {{item.date}}</p>
 				<!-- <p>
@@ -171,8 +171,7 @@
 					<span class="maroon">Verified Purchase</span>
 				</p> -->
 				<p>{{item.review}}</p>
-				<input type="text" name="item.review" placeholder="Write a comment..." [(ngModel)]="review"
-					id="item.id">
+				<input type="text" name="{{i}}" placeholder="Write a comment..." [(ngModel)]="Reviews" id="{{i}}">
 				<button class="btn btn-maroon" (click)="RateReview()">
 					Post
 				</button>

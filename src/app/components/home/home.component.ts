@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
     ecomsku = [];
     ecomArr = [];
     ecomProdsDeals = [];
+    recViewData = [];
     constructor(private router: Router, public productService: ProductService, private appService: appService, private _lightbox: Lightbox) { }
     ngOnInit() {
         // this.getWholeSellers();
@@ -44,6 +45,7 @@ export class HomeComponent implements OnInit {
         this.getEcomCats();
         this.getEcomDeals();
         this.getBanners();
+        this.recentlyViwed();
     }
     showAllProducts = true;
     showVegetablesScreen = false;
@@ -539,20 +541,62 @@ export class HomeComponent implements OnInit {
                 }
                 this.noData = false;
                 this.noData1 = false;
-                // this.noData2 = false;
-                // this.noData3 = false;
-                // this.noData4 = false;
+                this.noData2 = false;
+                this.noData3 = false;
+                this.noData4 = false;
             }
             else {
                 this.noData = false;
                 this.noData1 = true;
-                // this.noData2 = false;
-                // this.noData3 = false;
-                // this.noData4 = false;
+                this.noData2 = false;
+                this.noData3 = false;
+                this.noData4 = false;
             }
 
         })
     }
+
+    recentlyViwed() {
+        // this.ecomArr = [];
+        // let params = {
+        //     // "country": sessionStorage.country,
+        //     // "pin_code": sessionStorage.pinCode === "undefined" ? "null" : sessionStorage.pinCode,
+        //     // "area": sessionStorage.Area === "undefined" ? "null" : sessionStorage.Area,
+        //     "user_id": sessionStorage.userId
+
+        // }
+        if (sessionStorage.userId != undefined) {
+            this.appService.recentlyViwed().subscribe(res => {
+                this.recViewData = res.json().vendor_products;
+                if (this.recViewData != undefined) {
+                    for (var i = 0; i < this.recViewData.length; i++) {
+                        for (var j = 0; j < this.recViewData[i].sku_row.length; j++) {
+                            this.recViewData[i].selling_price = this.recViewData[i].updated_price - this.recViewData[i].updated_discount;
+                            this.recViewData[i].actual_price = this.recViewData[i].updated_price;
+                            this.recViewData[i].image = this.recViewData[i].sku_row[0].sku_images[0].sku_image;
+                            this.recViewData[i].skid = this.recViewData[i].sku_row[0].skid;
+                            this.skid = this.recViewData[i].sku_row[0].skid;
+                        }
+                    }
+                    this.noData = false;
+                    this.noData1 = false;
+                    this.noData2 = false;
+                    this.noData3 = false;
+                    this.noData4 = false;
+                }
+                else {
+                    this.noData = false;
+                    this.noData1 = false;
+                    this.noData2 = true;
+                    this.noData3 = false;
+                    this.noData4 = false;
+                }
+
+            })
+        }
+    }
+
+
     getBanProds(imgId) {
         this.router.navigate(['/products'], { queryParams: { imgId: imgId, action: 'banner' } });
     }

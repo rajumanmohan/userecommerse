@@ -64,12 +64,12 @@ export function getAuthServiceConfigs() {
         [
             {
                 id: FacebookLoginProvider.PROVIDER_ID,
-                provider: new FacebookLoginProvider("282577308941815")
+                provider: new FacebookLoginProvider("322467725136854")
             },
             {
                 id: GoogleLoginProvider.PROVIDER_ID,
-                // provider: new GoogleLoginProvider("399771236213-1llsl18vu1nb5r72o7u1fumq25vlaom6.apps.googleusercontent.com") //local 4100
-                provider: new GoogleLoginProvider("1049449910121-ocekik2fbhldgn7tkr1pso81iohhl2m4.apps.googleusercontent.com") //server
+                provider: new GoogleLoginProvider("399771236213-1llsl18vu1nb5r72o7u1fumq25vlaom6.apps.googleusercontent.com") //local 4100
+                // provider: new GoogleLoginProvider("1049449910121-ocekik2fbhldgn7tkr1pso81iohhl2m4.apps.googleusercontent.com") //server
 
             },
         ]

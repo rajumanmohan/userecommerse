@@ -101,7 +101,10 @@
                     <label for="inputphoneno" class="col-sm-2 col-form-label">Phone No
                         <span class="float-right">:</span>
                     </label>
-                    <div class="col-sm-8">
+                    <div class="col-sm-8 mobile-behrain">
+                        <div class="input-group-prepend group">
+                            <button class="input-button" type="button" id="button-addon1">+973</button>
+                        </div>
                         <input myNumberOnly type="text" class="form-control input-feild" id="inputphoneno1"
                             placeholder="8586854500" [(ngModel)]="profileData.mobile_number" name="mobile_number"
                             ngControl="mobile_number" customMin="15" #numberOne="ngModel" required>
@@ -226,7 +229,10 @@
                 <div class="form-group row">
                     <label for="inputMblnbr" class="col-sm-2 col-form-label">Mobile Number
                     </label>
-                    <div class="col-sm-8">
+                    <div class="col-sm-8 mobile-behrain">
+                        <div class="input-group-prepend group">
+                            <button class="input-button" type="button" id="button-addon1">+973</button>
+                        </div>
                         <input myNumberOnly type="text" class="form-control input-feild" id="inputNumber"
                             formControlName="mobile_number"
                             [ngClass]="{ 'is-invalid': submitted && f1.mobile_number.errors }">
@@ -324,8 +330,10 @@
                 <div class="form-group row">
                     <label for="inputMblnbr" class="col-sm-2 col-form-label">Mobile Number
                     </label>
-                    <div class="col-sm-10">
-
+                    <div class="col-sm-10 mobile-behrain">
+                        <div class="input-group-prepend group">
+                            <button class="input-button" type="button" id="button-addon1">+973</button>
+                        </div>
                         <input type="text" class="form-control input-feild" id="inputNumber" name="mobile_number"
                             [(ngModel)]="editAddData.mobile_number">
 
@@ -419,7 +427,7 @@
                                                 Size:</strong>{{wish.size}} <br />
                                             <strong>Color:</strong>BD {{wish.filter_color || "-"}}
                                         </p>
-    
+
                                     </div>
                                 </div>
                             </td>
@@ -459,7 +467,7 @@
                         <span class="float-right">:</span>
                     </label>
                     <div class="col-sm-6">
-                        <input type="text" formControlName="password" class="form-control input-feild"
+                        <input type="password" formControlName="password" class="form-control input-feild"
                             [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
                         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                             <div *ngIf="f.password.errors.required">Current Password is required</div>
@@ -843,7 +851,7 @@
                                     (click)="checkProdQuty(data.product_id,item.skid,data.selling_price,data.vendorid_as_owner,data.vendor_product_id,data.updated_discount)"><i
                                         class="fas fa-shopping-basket"></i></a>
                             </li>
-                            <li><a (click)="open(item.skid)"><img src="assets/images/maximize.png"></a></li>
+                            <!-- <li><a (click)="open(item.skid)"><img src="assets/images/maximize.png"></a></li> -->
                         </ul>
                         <ul class="expand-button2 expand-button-2">
                             <li><a (click)="addtoWish(data.product_id,item.skid)"><i class="fas fa-heart"
@@ -901,11 +909,14 @@
                     </p>
                 </div>
             </div>
-            <div class="notification-bar1" *ngFor="let data of noticationData">
+            <div class="notification-bar1"
+                *ngFor="let data of noticationData|paginate: { itemsPerPage: 10, currentPage: p };">
                 <p>
                     <i class="fa fa-bell" aria-hidden="true" style="color:#a7a3a2;"></i>&nbsp;&nbsp;
                     {{data.notification}}</p>
             </div>
+            <pagination-controls class="my-pagination" (pageChange)="p = $event" style="float:right;">
+            </pagination-controls>
             <div *ngIf="noData1">
                 <h5>No Notifications Found</h5>
             </div>
@@ -918,7 +929,7 @@
         </div>
     </div>
     <!-- offer zone -->
-    <div class="row" *ngIf="showOfferZone">
+    <div class="row" *ngIf="showOfferZone" hidden>
         <div class="col-md-12 mt-3">
             <h4>Electronics</h4>
         </div>
@@ -954,7 +965,7 @@
                                     class="
                                 fas fa-shopping-basket"></i></a>
                         </li>
-                        <li><a (click)="open(item.skid)"><img src="assets/images/maximize.png"></a></li>
+                        <!-- <li><a (click)="open(item.skid)"><img src="assets/images/maximize.png"></a></li> -->
                     </ul>
                     <ul class="expand-button2 expand-button-2">
                         <li><a (click)="addtoWish(item.product_id,item.skid)"><i class="fas fa-heart"></i></a></li>
@@ -1001,7 +1012,7 @@
                                     class="
                                 fas fa-shopping-basket"></i></a>
                         </li>
-                        <li><a (click)="open(item.skid)"><img src="assets/images/maximize.png"></a></li>
+                        <!-- <li><a (click)="open(item.skid)"><img src="assets/images/maximize.png"></a></li> -->
                     </ul>
                     <ul class="expand-button2 expand-button-2">
                         <li><a (click)="addtoWish(item.product_id,item.skid)"><i class="fas fa-heart"></i></a></li>
@@ -1048,7 +1059,7 @@
                                     class="
                                 fas fa-shopping-basket"></i></a>
                         </li>
-                        <li><a (click)="open(item.skid)"><img src="assets/images/maximize.png"></a></li>
+                        <!-- <li><a (click)="open(item.skid)"><img src="assets/images/maximize.png"></a></li> -->
                     </ul>
                     <ul class="expand-button2 expand-button-2">
                         <li><a (click)="addtoWish(item.product_id,item.skid)"><i class="fas fa-heart"></i></a></li>

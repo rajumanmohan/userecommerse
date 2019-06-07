@@ -27,6 +27,7 @@ export class ProductsComponent implements OnInit {
     imgId;
     wholeProd;
     serProd;
+    recViewData = [];
     // noRec: boolean;
     constructor(private router: Router, public productService: ProductService, private appService: appService, private route: ActivatedRoute) {
         this.route.queryParams.subscribe(params => {
@@ -47,10 +48,17 @@ export class ProductsComponent implements OnInit {
                 this.getEcomTopOffers();
                 this.seeAll = true;
                 this.searchProd = false;
-            } else if (params.action === "recent") {
+            } else if (params.action === "recemmnd") {
+                this.type = params.action;
+                this.action = "recemmnd";
+                this.getEcom();
+                this.seeAll = true;
+                this.searchProd = false;
+            }
+            else if (params.action === "recent") {
                 this.type = params.action;
                 this.action = "recent";
-                this.getEcom();
+                this.recentlyViwed();
                 this.seeAll = true;
                 this.searchProd = false;
             } else if (params.action === 'category') {
@@ -87,19 +95,19 @@ export class ProductsComponent implements OnInit {
     },
     {
         'price': "Less than 200",
-        'value': "100,200"
+        'value': "0,200"
     },
     {
         'price': "Less than 300",
-        'value': "200,300"
+        'value': "0,300"
     },
     {
         'price': "Less than 400",
-        'value': "300,400"
+        'value': "0,400"
     },
     {
-        'price': "Less than 500",
-        'value': "400,100000"
+        'price': "Above 400",
+        'value': "401,100000"
     },
     ];
     ngOnInit() {
@@ -1111,6 +1119,43 @@ export class ProductsComponent implements OnInit {
             if (res.json().message == "No records Found") {
                 this.noData = true;
             }
+        })
+    }
+    recentlyViwed() {
+        // this.ecomArr = [];
+        // let params = {
+        //     // "country": sessionStorage.country,
+        //     // "pin_code": sessionStorage.pinCode === "undefined" ? "null" : sessionStorage.pinCode,
+        //     // "area": sessionStorage.Area === "undefined" ? "null" : sessionStorage.Area,
+        //     "user_id": sessionStorage.userId
+
+        // }
+        this.appService.recentlyViwed().subscribe(res => {
+            this.prodData = res.json().vendor_products;
+            if (this.prodData != undefined) {
+                for (var i = 0; i < this.prodData.length; i++) {
+                    for (var j = 0; j < this.prodData[i].sku_row.length; j++) {
+                        this.prodData[i].selling_price = this.prodData[i].updated_price - this.prodData[i].updated_discount;
+                        this.prodData[i].actual_price = this.prodData[i].updated_price;
+                        this.prodData[i].image = this.prodData[i].sku_row[0].sku_images[0].sku_image;
+                        this.prodData[i].skid = this.prodData[i].sku_row[0].skid;
+                        this.skid = this.prodData[i].sku_row[0].skid;
+                    }
+                }
+                this.noData = false;
+                this.noData1 = false;
+                // this.noData2 = false;
+                // this.noData3 = false;
+                // this.noData4 = false;
+            }
+            else {
+                this.noData = true;
+                this.noData1 = false;
+                // this.noData2 = false;
+                // this.noData3 = false;
+                // this.noData4 = false;
+            }
+
         })
     }
 

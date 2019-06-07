@@ -10,9 +10,7 @@ body {
   /* padding-top: 4.5rem; */
 }
 
-body.modal-open {
-  padding-right: 40px !important;
-}
+
 
 .place-order button {
   background: #801424;
@@ -197,4 +195,8 @@ h4 a {
 }
 .mat-radio-button.mat-accent .mat-radio-inner-circle {
   background-color: #801323 !important;
+}
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto !important;
 }

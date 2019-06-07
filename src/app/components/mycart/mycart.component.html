@@ -27,8 +27,9 @@
                                                                 </option>
                                                             </select>
                                                         </div> -->
-                                <p class="details">Details : {{data.products.skuValue}},{{data.products.filter_color ||
-                                    "-" }}
+                                <p class="details">Details : {{data.products.skuValue}}
+                                    <!-- ,{{data.products.filter_color ||
+                                    "-" }} -->
                                     <!-- <span>
                                                                     <strike>BD {{data.products.actual_price}}</strike>
                                                                 </span> -->
@@ -56,7 +57,8 @@
                                         </span>
                                     </button>
                                     <input type="text" value="1" name="quantity" [(ngModel)]="data.quantity"
-                                        readonly="readonly" value="{{data.quantity}}" class="text-center" disabled>
+                                        readonly="readonly" value="{{data.quantity}}" class="text-center"
+                                        style="margin-left: -7%!important;" disabled>
                                     <button class="btn btn-icon btn-maroon btn-plus"
                                         (click)="checkProdQuty(data.cart_id,data.product_id,data.sku_id,data.quantity,data.vendorid_as_owner,data.vendor_product_id)">
                                         <span>
@@ -82,10 +84,10 @@
                                     <td>Sub-Total</td>
                                     <td> : BD {{billing}}</td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td>Delivery charges </td>
                                     <td> : ***</td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                         <button class="btn btn-maroon" value="Checkout" (click)="checkout()">Checkout</button>
@@ -157,7 +159,10 @@
                                     <label class="col-sm-4 col-md-4 col-form-label">Mobile Number
                                         <span>:</span>
                                     </label>
-                                    <div class="col-sm-8 col-md-8">
+                                    <div class="col-sm-8 col-md-8 mobile-behrain">
+                                        <div class="input-group-prepend group">
+                                            <button class="input-button" type="button" id="button-addon1">+973</button>
+                                        </div>
                                         <input type="text " formControlName="mobile_number" class="form-control"
                                             [ngClass]="{ 'is-invalid': submitted && f.mobile_number.errors }">
                                         <div *ngIf="submitted && f.mobile_number.errors" class="invalid-feedback">
@@ -238,19 +243,18 @@
                                         <a (click)="Type('Office')" [ngClass]="{'activeAdd':type=='Office'}">Office</a>
                                         <a (click)="Type('Other')" [ngClass]="{'activeAdd':type=='Other'}">Other</a>
                                     </p>
-                                    <div class="custom-control custom-checkbox">
+                                    <!-- <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="defaultUnchecked5">
                                         <label class="custom-control-label" for="defaultUnchecked5">Set this as my
                                             default
                                             address
                                         </label>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="form-group row">
 
                                     <div class="col-sm-12 submit text-right">
-                                        <button class="btn btn-maroon submit " type="submit "
-                                            (click)="saveAddress()">Submit</button>
+                                        <button class="btn btn-maroon submit " type="submit ">Submit</button>
                                     </div>
                                 </div>
                             </form>

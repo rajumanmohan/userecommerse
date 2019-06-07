@@ -5,9 +5,10 @@
 	<div id="carousel-example-1z" class="carousel slide carousel-fade slider" data-ride="carousel">
 		<!--Indicators-->
 		<ol class="carousel-indicators circle-indicators">
-			<li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
-			<li data-target="#carousel-example-1z" data-slide-to="1"></li>
-			<li data-target="#carousel-example-1z" data-slide-to="2"></li>
+			<li data-target="#carousel-example-1z" *ngFor="let data of bannerData;let i=index" [attr.data-slide-to]="i"
+				[ngClass]="{'active':i==0}"></li>
+			<!-- <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+			<li data-target="#carousel-example-1z" data-slide-to="2"></li> -->
 		</ol>
 		<!--/.Indicators-->
 		<!--Slides-->
@@ -89,7 +90,7 @@
 								(click)="checkProdQuty(data.product_id,item.skid,data.selling_price,data.vendorid_as_owner,data.vendor_product_id,data.updated_discount)"><i
 									class="fas fa-shopping-basket"></i></a>
 						</li>
-						<li><a (click)="open(item.skid)"><img src="assets/images/maximize.png"></a></li>
+						<!-- <li><a (click)="open(item.skid)"><img src="assets/images/maximize.png"></a></li> -->
 					</ul>
 					<ul class="expand-button2 expand-button-2">
 						<li><a (click)="addtoWish(data.product_id,item.skid)"><i class="fas fa-heart"
@@ -105,14 +106,14 @@
 	</div>
 	<!--/.Slides-->
 	<!--Controls-->
-	<div class="whole-icons controls-top">
+	<!-- <div class="whole-icons controls-top">
 		<a class="btn-floating btn-small slider-btn-left" href="#multi-item-example" data-slide="prev">
 			<i class="fas fa-long-arrow-alt-left"></i>
 		</a>
 		<a class="btn-floating btn-small slider-btn-right" href="#multi-item-example" data-slide="next">
 			<i class="fas fa-long-arrow-alt-right"></i>
 		</a>
-	</div>
+	</div> -->
 	<!--/.Controls-->
 
 </div>
@@ -225,7 +226,7 @@
 								(click)="checkProdQuty(data.product_id,item.skid,data.selling_price,data.vendorid_as_owner,data.vendor_product_id,data.updated_discount)"><i
 									class="fas fa-shopping-basket"></i></a>
 						</li>
-						<li><a (click)="open(item.skid)"><img src="assets/images/maximize.png"></a></li>
+						<!-- <li><a (click)="open(item.skid)"><img src="assets/images/maximize.png"></a></li> -->
 					</ul>
 					<ul class="expand-button2 expand-button-2">
 						<li><a (click)="addtoWish(data.product_id,item.skid)"><i class="fas fa-heart"
@@ -341,7 +342,7 @@
 						<li><a><i class="fas fa-shopping-basket"
 									(click)="checkProdQuty(data.product_id,data.skid,data.selling_price,data.vendorid_as_owner,data.vendor_product_id,data.updated_discount)"></i></a>
 						</li>
-						<li><a (click)="open(data.skid)"><img src="assets/images/maximize.png"></a></li>
+						<!-- <li><a (click)="open(data.skid)"><img src="assets/images/maximize.png"></a></li> -->
 					</ul>
 					<ul class="expand-button2 expand-button-2">
 						<li><a (click)="addtoWish(data.product_id,data.skid)"><i class="fas fa-heart"
@@ -467,7 +468,7 @@
 						<li><a><i class="fas fa-shopping-basket"
 									(click)="checkProdQuty(data.product_id,data.skid,data.selling_price,data.vendorid_as_owner,data.vendor_product_id,data.updated_discount)"></i></a>
 						</li>
-						<li><a (click)="open(data.skid)"><img src="assets/images/maximize.png"></a></li>
+						<!-- <li><a (click)="open(data.skid)"><img src="assets/images/maximize.png"></a></li> -->
 					</ul>
 					<ul class="expand-button2 expand-button-2">
 						<li><a (click)="addtoWish(data.product_id,item.skid)"><i class="fas fa-heart"
@@ -520,7 +521,7 @@
 		<div class="col-lg-4">
 			<h4 class="text-center">Recently Viewed
 				<span>
-					<a (click)="seeAll('recent')">See all</a>
+					<a (click)="seeAll('','','recent')">See all</a>
 				</span>
 			</h4>
 		</div>
@@ -536,36 +537,39 @@
 	<div class="carousel-inner deals" role="listbox">
 
 		<div class="carousel-item active dealsAct">
-			<!-- <div class="col-md-3" *ngFor="let data of ecomArr">
-				<div class="wrapper">
+			<div class="col-md-3 col-sm-6 recProds" *ngFor="let data of recViewData">
+				<div class="wrapper" *ngFor="let item of data.sku_row">
 					<div class="card">
-						<img class="img-fluid" [src]="data.image" alt="Card image cap"
-							(click)="showProduxtDetails(data.product_id)">
+						<img src="assets/images/background-img.png" class="bg-layer">
+						<img class="img-fluid product-image" [src]="item.sku_images[0].sku_image" alt="Card image cap"
+							(click)="showProduxtDetails(data.vendor_product_id,data.vendorid_as_owner)">
 						<div class="card-block">
-							<h5 class="text-center">{{data.product_name}}
+							<h5 class="text-center prod-name">{{data.product_name}}
 							</h5>
 							<p class="text-center">
 								BD {{data.selling_price}}
 
-								<strike>BD {{data.actual_price}}
-								</strike>
+								<strike>BD {{data.actual_price}}</strike>
 
 							</p>
 
 						</div>
 					</div>
 					<ul class="expand-button">
-						<li><a><i class="fas fa-shopping-basket"
-									(click)="checkProdQuty(data.product_id,data.skid)"></i></a>
+						<li><a
+								(click)="checkProdQuty(data.product_id,item.skid,data.selling_price,data.vendorid_as_owner,data.vendor_product_id,data.updated_discount)"><i
+									class="fas fa-shopping-basket"></i></a>
 						</li>
-						<li><a (click)="recently(data.skid)"><img src="assets/images/maximize.png"></a></li>
+						<!-- <li><a (click)="open(item.skid)"><img src="assets/images/maximize.png"></a></li> -->
 					</ul>
 					<ul class="expand-button2 expand-button-2">
-						<li><a (click)="addtoWish(data.product_id,data.skid)"><i class="fas fa-heart"></i></a></li>
+						<li><a (click)="addtoWish(data.product_id,item.skid)"><i class="fas fa-heart"
+									[ngStyle]="{'color':data.wish_list == 'true' ? '#801223'  :  '#dfdfdf'}"></i></a>
+						</li>
 					</ul>
 				</div>
-			</div> -->
-			<div>
+			</div>
+			<div *ngIf="noData2">
 				<h4>No Products Found</h4>
 			</div>
 		</div>
@@ -581,7 +585,7 @@
 		<div class="col-lg-4">
 			<h4 class="text-center">Recommended Products
 				<span>
-					<a (click)="seeAll('','','recent')">See all</a>
+					<a (click)="seeAll('','','recemmnd')">See all</a>
 				</span>
 			</h4>
 		</div>
@@ -625,7 +629,7 @@
 								(click)="checkProdQuty(data.product_id,item.skid,data.selling_price,data.vendorid_as_owner,data.vendor_product_id,data.updated_discount)"><i
 									class="fas fa-shopping-basket"></i></a>
 						</li>
-						<li><a (click)="open(item.skid)"><img src="assets/images/maximize.png"></a></li>
+						<!-- <li><a (click)="open(item.skid)"><img src="assets/images/maximize.png"></a></li> -->
 					</ul>
 					<ul class="expand-button2 expand-button-2">
 						<li><a (click)="addtoWish(data.product_id,item.skid)"><i class="fas fa-heart"
@@ -757,14 +761,14 @@
 	<!--/.Slides-->
 
 	<!--Controls-->
-	<div class="controls-top">
+	<!-- <div class="controls-top">
 		<a class="btn-floating btn-small slider-btn-left " href="#multi-item-example6" data-slide="prev">
 			<i class="fa fa-chevron-left"></i>
 		</a>
 		<a class="btn-floating btn-small slider-btn-right" href="#multi-item-example6" data-slide="next">
 			<i class="fa fa-chevron-right"></i>
 		</a>
-	</div>
+	</div> -->
 	<!--/.Controls-->
 
 </div>
