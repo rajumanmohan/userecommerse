@@ -6,6 +6,7 @@ import { appService } from './../../services/mahaliServices/mahali.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OrderPipe } from 'ngx-order-pipe';
+import swal from 'sweetalert';
 declare var jQuery: any;
 @Component({
     selector: 'app-mycart',
@@ -152,35 +153,44 @@ export class MycartComponent implements OnInit {
 
         })
     }
+    // if(){
+
+    // }
     checkout() {
-        this.showCartItems = false;
-        this.showDeliveryAddress = true;
+        if (this.cartData.length == 0) {
+            swal("Your cart is empty", "", "warning");
+            this.showCartItems = false;
+            this.showDeliveryAddress = false;
+        } else {
+            this.showCartItems = false;
+            this.showDeliveryAddress = true;
+        }
     }
     cartDetails = [];
     cartCount;
-    addtoCart(Id, skId) {
-        var inData = {
-            "products": [{
-                product_id: Id,
-                sku_id: skId
-            }],
-            "vendor_id": JSON.parse(sessionStorage.getItem('userId')),
-            "item_type": "ecommerce"
-        }
-        this.appService.addtoCart(inData).subscribe(res => {
-            if (res.json().status === 400) {
-                swal(res.json().message, "", "error");
-            } else {
-                this.getCart();
-                this.cartDetails = res.json().selling_price_total;
-                this.cartCount = res.json().count;
-                swal(res.json().message, "", "success");
-            }
+    // addtoCart(Id, skId) {
+    //     var inData = {
+    //         "products": [{
+    //             product_id: Id,
+    //             sku_id: skId
+    //         }],
+    //         "vendor_id": JSON.parse(sessionStorage.getItem('userId')),
+    //         "item_type": "ecommerce"
+    //     }
+    //     this.appService.addtoCart(inData).subscribe(res => {
+    //         if (res.json().status === 400) {
+    //             swal(res.json().message, "", "error");
+    //         } else {
+    //             this.getCart();
+    //             this.cartDetails = res.json().selling_price_total;
+    //             this.cartCount = res.json().count;
+    //             swal(res.json().message, "", "success");
+    //         }
 
-        }, err => {
+    //     }, err => {
 
-        })
-    }
+    //     })
+    // }
     getAddData = [];
     getAdd() {
         this.appService.getAddress().subscribe(res => {
@@ -218,7 +228,7 @@ export class MycartComponent implements OnInit {
     }
     selectAdd(id) {
         this.appService.setDelAdd(this.addId).subscribe(res => {
-            swal("Selected successfully", "", "success");
+            swal("Address selected successfully", "", "success");
             this.getAdd();
         })
     }
@@ -254,6 +264,9 @@ export class MycartComponent implements OnInit {
             "payment_type": this.payId,
             "user_id": sessionStorage.getItem('userId'),
             "item_type": "ecommerce",
+            "Delivery_charge": 0,
+            "Coupon_Discount": 0,
+            "Final_amount": this.billing
         }
         this.appService.palceOrder(inData).subscribe(res => {
             if (res.json().message === "Success") {

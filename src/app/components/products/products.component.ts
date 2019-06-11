@@ -28,6 +28,7 @@ export class ProductsComponent implements OnInit {
     wholeProd;
     serProd;
     recViewData = [];
+    billing;
     // noRec: boolean;
     constructor(private router: Router, public productService: ProductService, private appService: appService, private route: ActivatedRoute) {
         this.route.queryParams.subscribe(params => {
@@ -254,6 +255,7 @@ export class ProductsComponent implements OnInit {
         this.appService.getCart(inData).subscribe(res => {
             this.cartDetails = res.json().cart_details;
             this.cartCount = res.json().count;
+            this.billing = res.json().selling_Price_bill;
         }, err => {
 
         })
@@ -427,8 +429,7 @@ export class ProductsComponent implements OnInit {
             this.prodData = res.json().vendor_products;
             // this.catId1 = this.catId === undefined ? this.prodData[0].category_id != undefined ? this.prodData[0].category_id : "" : this.catId;
             if (this.prodData != undefined) {
-            this.catId1 = this.catId === undefined ? this.prodData[0].category_id != undefined ? this.prodData[0].category_id : "" : this.catId;
-
+                this.catId1 = this.catId == undefined ? this.prodData[0].category_id != undefined ? this.prodData[0].category_id : "" : this.catId;
                 for (var i = 0; i < this.prodData.length; i++) {
                     for (var j = 0; j < this.prodData[i].sku_row.length; j++) {
                         this.prodData[i].selling_price = this.prodData[i].updated_price - this.prodData[i].updated_discount;
@@ -444,14 +445,11 @@ export class ProductsComponent implements OnInit {
             } else {
                 this.noData = true;
             }
-            // if (res.json().message === "No records Found") {
-
-            // }
+            this.appService.getBrands(this.catId1 || 'null').subscribe(res => {
+                this.Brands = res.json().brands;
+            })
         }, err => {
             // this.subCatName1 = '';
-        })
-        this.appService.getBrands(this.catId1 || 'null').subscribe(res => {
-            this.Brands = res.json().brands;
         })
     }
     // changeSize(Id) {
@@ -916,7 +914,7 @@ export class ProductsComponent implements OnInit {
         }
     }
     getBrands() {
-        this.appService.getBrands(this.catId || 'null').subscribe(res => {
+        this.appService.getBrands(this.catId1 || 'null').subscribe(res => {
             this.Brands = res.json().brands;
         })
     }

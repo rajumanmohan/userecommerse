@@ -216,16 +216,19 @@ body {
 }
 
 .prod-images {
-    height: 70px !important;
+    // height: 70px !important;
     width: 70px !important;
     margin: 15px 15px 15px 0;
     border: 1px solid gray;
     cursor: pointer;
 }
-.img {
-    display: inline-block;
-    height: auto;
-    overflow: auto;
+.img{
+    display: inline-flex;
+    overflow-x: auto;
+    max-width: 50;
+    /* width: 100%; */
+    margin-top: 20px;
+    max-width: 100%;
 }
 .wish-list{
     i{

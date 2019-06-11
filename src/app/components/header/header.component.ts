@@ -24,6 +24,7 @@ import {
 })
 export class HeaderComponent implements OnInit {
     @Input() cartCount: number;
+    @Input() billing: number;
     registerForm: FormGroup;
     loginForm: FormGroup;
     submitted = false;
@@ -623,7 +624,7 @@ export class HeaderComponent implements OnInit {
     }
     cartDetails = [];
     cartData = [];
-    billing;
+    // billing;
     getCart() {
         var inData = sessionStorage.getItem('userId');
         this.appService.getCart(inData).subscribe(res => {

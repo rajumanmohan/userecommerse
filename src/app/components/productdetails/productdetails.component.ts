@@ -49,6 +49,7 @@ export class ProductdetailsComponent implements OnInit {
     first_name;
     othershops;
     prodId1;
+    billing;
     ngOnInit() {
         // this.getRates1();
         this.product = this.productService.product;
@@ -274,6 +275,7 @@ export class ProductdetailsComponent implements OnInit {
         this.appService.getCart(inData).subscribe(res => {
             this.cartDetails = res.json().cart_details;
             this.cartCount = res.json().count;
+            this.billing = res.json().selling_Price_bill;
         }, err => {
 
         })
