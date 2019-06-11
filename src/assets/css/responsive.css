@@ -10,7 +10,7 @@
         height: 100%!important;
     }
 }
-@media (min-width: 489.98px) and (max-width: 768px) { 
+@media (min-width: 575.98px) and (max-width: 768px) { 
     .wrapper:hover .expand-button {
        top: 8px!important;
        left: 86px!important;
@@ -30,12 +30,33 @@
     .mobile-number {
         width: 80% !important;
     }
+    .wrapper:hover .expand-button {
+        top: 8px!important;
+        left: 182px!important;
+    }
+    .wrapper:hover .expand-button-2 {
+        top: 8px!important;
+        right: 182px!important;
+    } 
  }
  @media (max-width: 490.98px) {
     .mobile-number {
         width: 76%!important;
     }
-
+    .card {
+        margin: 0px auto;
+    }
+    .product-image{
+        height: auto!important;
+    }
+       .wrapper:hover .expand-button {
+        top: 8px!important;
+        left: 82px!important;
+    }
+    .wrapper:hover .expand-button-2 {
+        top: 8px!important;
+        right: 82px!important;
+    } 
   }
   @media (min-width: 490px){
   .card {
