@@ -3,7 +3,23 @@
         width: 100%!important;
         margin-left: 0!important;
     }
+    .banner-slider img {
+        height: 100%!important;
+    }
+    .slider.carousel-inner {
+        height: 100%!important;
+    }
 }
+@media (min-width: 489.98px) and (max-width: 768px) { 
+    .wrapper:hover .expand-button {
+       top: 8px!important;
+       left: 86px!important;
+   }
+   .wrapper:hover .expand-button-2 {
+       top: 8px!important;
+       right: 86px!important;
+   }
+ }
 @media (max-width: 767.98px) { 
     .mobile-number {
         width: 38% !important;
@@ -21,7 +37,11 @@
     }
 
   }
-
+  @media (min-width: 490px){
+  .card {
+      margin: 0px auto;
+  }
+}
   
   @media (max-width: 374.98px) {
 
