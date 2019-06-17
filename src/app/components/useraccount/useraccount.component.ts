@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { appService } from './../../services/mahaliServices/mahali.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import swal from 'sweetalert';
 declare var jQuery: any;
 @Component({
     selector: 'app-useraccount',
@@ -707,7 +708,7 @@ export class UseraccountComponent implements OnInit {
     };
     // get f3() { return this.editAddForm.controls; }
     editAdd(addId) {
-        this.appService.update(addId).subscribe(resp => {
+        this.appService.getAdd(addId).subscribe(resp => {
             this.editAddData = resp.json().delivery_address[0];
         }, err => {
 
@@ -725,11 +726,15 @@ export class UseraccountComponent implements OnInit {
             "address_type": this.type
         }
         this.appService.updateAddData(indata, addId).subscribe(resp => {
-            console.log(resp.json());
+            swal(resp.json().message, "", "success");
             this.getAdd();
+            this.cancelAdd();
         }, err => {
 
         })
+    }
+    selectAdd(){
+        swal("Address selected successfully","","success")
     }
     fromDt;
     toDt;
@@ -761,7 +766,7 @@ export class UseraccountComponent implements OnInit {
                     this.wishData[i].product_name = this.wishData[i].products.product_name;
                     this.wishData[i].product_id = this.wishData[i].products.product_id;
                     for (var j = 0; j < this.wishData[i].products.sku_details.length; j++) {
-                        this.wishData[i].selling_price = this.wishData[i].products.sku_details[j].selling_price;
+                        this.wishData[i].selling_price = this.wishData[i].products.updated_price - this.wishData[i].products.updated_discount;
                         this.wishData[i].size = this.wishData[i].products.sku_details[j].size;
                         this.wishData[i].skid = this.wishData[i].products.sku_details[j].skid;
                         this.wishData[i].product_image = this.wishData[i].products.sku_details[j].sku_images[0].sku_image;

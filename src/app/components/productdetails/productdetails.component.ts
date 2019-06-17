@@ -23,6 +23,7 @@ export class ProductdetailsComponent implements OnInit {
         this.route.queryParams.subscribe(params => {
             this.prodId = params.prodId;
             this.venId1 = params.venId1;
+        this.getProductById();
         });
     }
 
@@ -56,7 +57,6 @@ export class ProductdetailsComponent implements OnInit {
         this.sub = this.route
             .data
             .subscribe(v => console.log(v));
-        this.getProductById();
     }
 
     starList: boolean[] = [true, true, true, true, true];       // create a list which contains status of 5 stars
@@ -93,6 +93,7 @@ export class ProductdetailsComponent implements OnInit {
     venId;
     getProductById() {
         this.skuData = [];
+        this.prodImages = []
         // this.getRates1();
         this.appService.getProductById(this.prodId, this.venId1).subscribe(res => {
             this.productData = res.json().vendor_products;
@@ -209,15 +210,20 @@ export class ProductdetailsComponent implements OnInit {
         })
     }
     checkProdQuty1(prodId) {
-        this.appService.checkQuty(prodId, this.skid, 0, this.venId1, this.vendor_product_id).subscribe(res => {
-            if (res.json().status === 200) {
-                this.addtoCart(prodId);
-                this.router.navigate(['/mycart']);
-            } else {
-                swal(res.json().message, "", "error");
-                // this.NoStockMsg = res.json().data;
-            }
-        })
+        if (sessionStorage.userId != undefined) {
+            this.appService.checkQuty(prodId, this.skid, 0, this.venId1, this.vendor_product_id).subscribe(res => {
+                if (res.json().status === 200) {
+                    this.addtoCart(prodId);
+                    this.router.navigate(['/mycart']);
+                } else {
+                    swal(res.json().message, "", "error");
+                    // this.NoStockMsg = res.json().data;
+                }
+            })
+        } else {
+            swal("Please Login", "", "warning");
+        }
+
     }
     itemIncrease(cartId) {
         for (var i = 0; i < this.cartDetails.length; i++) {

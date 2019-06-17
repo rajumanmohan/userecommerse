@@ -553,18 +553,19 @@ export class HeaderComponent implements OnInit {
         this.subId = Id;
         this.subCatData = [];
         this.showSubCats = true;
+        this.productArr = [];
         for (var i = 0; i < this.category.length; i++) {
             for (var j = 0; j < this.category[i].subcategory.length; j++) {
                 if (Id === this.category[i].subcategory[j].category_id) {
                     this.category[i].subcategory[j].cat_name = this.category[i].category_name;
                     this.subCatData.push(this.category[i].subcategory[j]);
                 }
-                // for (var k = 0; k < this.category[i].subcategory[j].products.length; k++) {
-                //     if (Id === this.category[i].subcategory[j].products[k].category_id) {
-                //         this.productsData = this.category[i].subcategory[j].products[k];
-                //         this.productArr.push(this.productsData)
-                //     }
-                // }
+                for (var k = 0; k < this.category[i].subcategory[j].products.length; k++) {
+                    if (Id == this.category[i].subcategory[j].category_id) {
+                        this.productsData = this.category[i].subcategory[j].products[k];
+                        this.productArr.push(this.productsData);
+                    }
+                }
             }
         }
     }

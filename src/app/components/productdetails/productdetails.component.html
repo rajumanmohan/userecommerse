@@ -6,19 +6,19 @@
 	</p>
 	<div class="row">
 
-		<div class="col-md-1"></div>
-        <div class="col-md-5">
-            <img id="myImg" src="{{product_image}}" [imageZoom]="zoomedImageSrc" alt="Snow">
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="img">
-                        <img *ngFor="let img of prodImages" [src]="img.sku_image" class="prod-images"
-                            (click)="showBigImage(img.sku_image)">
-                    </div>
-                </div>
-            </div>
+		<!-- <div class="col-md-1"></div> -->
+		<div class="col-md-5">
+			<img id="myImg" src="{{product_image}}" [imageZoom]="zoomedImageSrc" alt="Snow">
+			<div class="row">
+				<div class="col-md-9">
+					<div class="img">
+						<img *ngFor="let img of prodImages" [src]="img.sku_image" class="prod-images"
+							(click)="showBigImage(img.sku_image)">
+					</div>
+				</div>
+			</div>
 
-        </div>
+		</div>
 		<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6 details">
 			<h4>{{prodName}}</h4>
 			<!-- <i *ngFor="let item of starList; let i=index " class="fa fa-star"></i>

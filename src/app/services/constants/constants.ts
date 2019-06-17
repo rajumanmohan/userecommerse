@@ -22,7 +22,7 @@ export const AppSettings = {
     getBanners: baseUrl + "banners/e_commerce",
     productByCatId: baseUrl + "vendor/products/categoryproducts",
     productBySubCatId: baseUrl + "vendor/products/subcategoryproducts",
-    searchProducts: baseUrl + 'vendor/products/searchuserproducts',
+    searchProducts: baseUrl + 'vendor/products/searchuserproducts/ecom',
     addToCart: baseUrl + "vendor/cart_details",
     getCart: baseUrl + 'vendor/cart_details/users/ecom',
     delCart: baseUrl + 'vendor/cart_details/users',

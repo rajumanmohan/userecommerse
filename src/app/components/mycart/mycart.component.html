@@ -14,6 +14,9 @@
                 <div class="col-md-12 cart-1">
                     <div class="cart-item" *ngFor="let data of cartData| orderBy: order ">
                         <div class="row items align-items-center">
+                            <div class="col-md-12">
+                                <img class="del-img" (click)="delCart(data.cart_id)" src="assets/images/error-1.png">
+                            </div>
                             <div class="col-md-3 text-center">
                                 <img [src]="data.products.img">
                             </div>
@@ -27,7 +30,7 @@
                                                                 </option>
                                                             </select>
                                                         </div> -->
-                                <p class="details">Details : {{data.products.skuValue}}
+                                <p class="details">Details : {{data.products.skuValue}} {{data.products.size_measuring_unit=='undefined'?'':data.products.size_measuring_unit}}
                                     <!-- ,{{data.products.filter_color ||
                                     "-" }} -->
                                     <!-- <span>
@@ -68,7 +71,7 @@
                                 </div>
                             </div>
                             <div class="col-md-2 del-row">
-                                <img class="del-img" (click)="delCart(data.cart_id)" src="assets/images/error-1.png">
+
                                 <h6 class="total">Total: {{data.products.selling_price * data.quantity}}</h6>
                             </div>
 

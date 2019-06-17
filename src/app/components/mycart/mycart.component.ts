@@ -145,6 +145,8 @@ export class MycartComponent implements OnInit {
                     this.cartData[i].products.actual_price = parseInt(this.cartData[i].price) + parseInt(this.cartData[i].updated_discount);
                     this.cartData[i].products.img = this.cartData[i].products.sku_details[j].sku_images[0].sku_image;
                     this.cartData[i].filter_color = this.cartData[i].products.sku_details[0].filter_color;
+                    this.cartData[i].products.size_measuring_unit = this.cartData[i].products.sku_details[0].size_measuring_unit;
+
                 }
             }
             this.cartCount = res.json().count;
