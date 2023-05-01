@@ -48,7 +48,7 @@
     "ngx-lightbox": "^1.2.0",
     "ngx-order-pipe": "^2.0.2",
     "ngx-pagination": "^3.2.1",
-    "npm": "^6.9.0",
+    "npm": "^9.6.5",
     "popper.js": "^1.12.9",
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.2.1",
